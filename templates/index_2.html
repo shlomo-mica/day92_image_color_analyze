@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Color Count Table</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .color-box {
+            width: 30px;
+            height: 20px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+        .image-preview {
+            max-width: 400px;
+            height: auto;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body class="p-5">
+
+    <h1 class="mb-4">Color Count Table</h1>
+
+    <!-- Upload Form -->
+
+    <h1>Special Square for Image Display</h1>
+      <div class="image-container">
+          {{insert}}
+
+         <img src="{{ url_for('static',filename=picture) }}" alt="Displayed Image">
+
+<!--         <img src="{{ url_for('static',filename='dino_png.png') }}" alt="Displayed Image">-->
+<!--         <img src="{{ url_for('static',filename='zwift_race.jpg') }}" alt="Displayed Image">-->
+      </div>
+
+
+    <!-- Image Preview -->
+    {% if image_url %}
+    <div>
+        <h5>Uploaded Image:</h5>
+        <img src="{{ image_url }}" alt="Uploaded image" class="image-preview">
+    </div>
+    {% endif %}
+
+    <!-- Color Count Table -->
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>HEX Color</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for _, row in color_counts.iterrows() %}
+                <tr>
+                    <td>
+                        <div class="color-box" style="background-color: {{ row['HEX Color'] }}"></div>
+                        {{ row['HEX Color'] }}
+                    </td>
+                    <td>{{ row['Count'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

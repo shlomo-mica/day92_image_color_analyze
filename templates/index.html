@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title color="=red" >Library</title>
+  </head>
+  <body>
+    <h1> Library  </h1>
+    <ul>
+    {% for item in var %}
+
+    <li><h4>{{ item }}</h4></li>
+
+    {% endfor %}
+
+  {% for item in var2 %}
+
+    <li><h4>{{ item }}</h4></li>
+
+    {% endfor %}
+    </ul>
+
+
+   </body>
+<p><a href="{{ url_for('home')}}">home</a> </p>
+</html>
